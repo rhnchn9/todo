@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2021"
+        ],
+        "module": "CommonJS",
+        "sourceMap": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "types": [
+            "node"
+        ],
+        "incremental": true,
+    },
+    "ts-node": {
+        "transpileOnly": true,
+        "files": true,
+        "swc": true
+    }
+}
