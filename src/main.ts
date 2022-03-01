@@ -1,5 +1,7 @@
+import 'dotenv/config';
 import express from 'express';
-import { appLogger } from '@/config/logger';
+import { appLogger, winstonLogger } from '@/config/logger';
+import { APP_PORT } from '@/config/env';
 
 const app = express();
 
@@ -9,4 +11,5 @@ app.get('/', (req, res) => {
     res.send('Hello world');
 });
 
-app.listen(4000);
+app.listen(APP_PORT);
+winstonLogger.info(`App is running at port ${APP_PORT}`);

@@ -1,7 +1,7 @@
 import { createLogger, transports, format } from 'winston';
 import morgan from 'morgan';
 
-const winstonLogger = createLogger({
+export const winstonLogger = createLogger({
     format: format.errors({ stack: true }),
     transports: [
         new transports.File({
