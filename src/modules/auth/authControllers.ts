@@ -1,8 +1,8 @@
 import { getUserByEmail } from '@/modules/users/userServices';
 import { generateToken } from '@/helpers/tokenGenerator';
 import { Request, Response } from 'express';
-import { statusCodes } from '@/constants/statusCodes';
-import { statusMessages } from '@/constants/statusMessages';
+import { status } from '@/constants/status';
+import { handleError, handleResponse } from '@/helpers/utils';
 
 export default { 
     login(req: Request, res: Response) {
@@ -13,31 +13,27 @@ export default {
                 if (user.password && user.password === password) {
                     const token = generateToken({ userId: user.id });
                     const { password, ...restUser } = user;
-                    res.status(statusCodes.OK).send({
-                        code: statusCodes.USER_LOGGED_IN_SUCCESSFULLY,
-                        msg: statusMessages.USER_LOGGED_IN_SUCCESSFULLY,
+                    handleResponse(res, status.OK, {
+                        ...status.USER_LOGGED_IN_SUCCESSFULLY,
                         data: {
                             ...restUser,
                             ...token
                         }
                     });
                 } else {
-                    res.status(statusCodes.NOT_AUTHENTICATED).send({
-                        code: statusCodes.INVALID_CREDENTIALS,
-                        msg: statusMessages.INVALID_CREDENTIALS
+                    handleResponse(res, status.NOT_AUTHENTICATED, {
+                        ...status.INVALID_CREDENTIALS
                     });
                 }
             } else {
-                res.status(statusCodes.BAD_REQUEST).send({
-                    code: statusCodes.INVALID_CREDENTIALS,
-                    msg: statusMessages.INVALID_CREDENTIALS
+                handleResponse(res, status.BAD_REQUEST, {
+                    ...status.INVALID_CREDENTIALS
                 });
             }
         } catch (err) {
-            res.status(statusCodes.INTERNAL_SERVER_ERROR).send({
-                code: statusCodes.FAILED_TO_LOGIN_USER,
-                msg: statusMessages.FAILED_TO_LOGIN_USER
-            });
+            handleError(res, status.INTERNAL_SERVER_ERROR, {
+                ...status.FAILED_TO_LOGIN_USER
+            }, err);
         }
     }
 };

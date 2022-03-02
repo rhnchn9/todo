@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "name": "Input field",
+        "description": "Add a new input field",
+        "status": "Todo",
+        "estimatedTime": "6h"
+    },
+    {
+        "id": "2",
+        "name": "Bug fixes",
+        "description": "Fix issues in prod",
+        "status": "In Progress",
+        "estimatedTime": "2d"
+    },
+    {
+        "id": "3",
+        "name": "Feedback changes",
+        "description": "Add changes to existing system",
+        "status": "Done",
+        "estimatedTime": "2h"
+    },
+    {
+        "id": "4",
+        "name": "Code Refactor",
+        "description": "Clean code and remove unused code",
+        "status": "Todo",
+        "estimatedTime": "5h"
+    }
+]
